@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCORE:CAST - Shared Result</title>
+  <meta property="og:title" content="SCORE:CAST Match Result">
+  <meta property="og:type" content="website">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, system-ui, sans-serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .card { background: #16213e; border-radius: 16px; padding: 32px; max-width: 400px; width: 90%; }
+    .title { text-align: center; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin-bottom: 24px; }
+    .score-row { display: flex; align-items: center; justify-content: space-between; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+    .score { color: #4d8064; font-size: 28px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    td { padding: 8px 12px; border-bottom: 1px solid #ffffff10; font-size: 14px; }
+    tr td:last-child { text-align: right; font-weight: bold; }
+    .btn { display: block; width: 100%; padding: 14px; background: #4d8064; color: #fff; border: none; border-radius: 12px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; margin-top: 16px; cursor: pointer; }
+    .btn:hover { opacity: 0.9; }
+    .loading { text-align: center; opacity: 0.5; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="card" id="content">
+    <div class="loading">Loading...</div>
+  </div>
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get('t');
+      if (!token) { document.getElementById('content').innerHTML = '<div class="loading">Invalid link</div>'; return; }
+
+      var deepLink = 'app.scorecast://share/' + token;
+
+      // Try opening the app first
+      window.location.href = deepLink;
+
+      // After timeout, fetch data and render fallback
+      setTimeout(function() {
+        var apiUrl = 'https://xtfzrqkhyqctoxarpkvy.supabase.co/functions/v1/share-view/' + token;
+        fetch(apiUrl)
+          .then(function(r) { return r.json(); })
+          .then(function(d) { render(d, deepLink); })
+          .catch(function() {
+            document.getElementById('content').innerHTML = '<div class="loading">Match not found</div>';
+          });
+      }, 1500);
+
+      function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+      function render(data, dl) {
+        var teamAName = data.teamAName || 'Team A';
+        var teamBName = data.teamBName || 'Team B';
+        var matches = data.matches || [];
+        var aWins = 0, bWins = 0;
+        var rows = '';
+
+        matches.forEach(function(m) {
+          var g0 = m.state.games[0], g1 = m.state.games[1];
+          if (m.state.phase === 'finished') {
+            if (g0 > g1) aWins++;
+            else if (g1 > g0) bWins++;
+          }
+          var p0 = m.sidePlayers ? m.sidePlayers[0].map(function(p) { return p.name; }).join(' / ') : '?';
+          var p1 = m.sidePlayers ? m.sidePlayers[1].map(function(p) { return p.name; }).join(' / ') : '?';
+          rows += '<tr><td>' + esc(p0) + ' vs ' + esc(p1) + '</td><td>' + g0 + ' - ' + g1 + '</td></tr>';
+        });
+
+        document.getElementById('content').innerHTML =
+          '<div class="title">SCORE:CAST</div>' +
+          '<div class="score-row"><span>' + esc(teamAName) + '</span><span class="score">' + aWins + ' - ' + bWins + '</span><span>' + esc(teamBName) + '</span></div>' +
+          '<table>' + rows + '</table>' +
+          '<a class="btn" href="' + dl + '">Open in SCORE:CAST</a>';
+      }
+    })();
+  </script>
+</body>
+</html>
