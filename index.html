@@ -56,14 +56,13 @@
     font-size: 1.25rem;
     color: white;
     letter-spacing: -0.02em;
-    display: flex; align-items: center; gap: 0.5rem;
+    display: flex; align-items: center;
+    gap: 0.2rem;
   }
-  .logo-dot {
-    width: 10px; height: 10px;
-    background: var(--ittf-accent);
-    border-radius: 50%;
-    box-shadow: var(--glow);
-    animation: pulse 2s ease-in-out infinite;
+  .logo-mark {
+    width: 48px; height: 48px;
+    display: block;
+    margin-right: 0.15rem;
   }
   @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 1; }
@@ -667,8 +666,8 @@
 <nav>
   <div class="inner">
     <div class="logo">
-      <span class="logo-dot"></span>
-      SCORE<span style="color: var(--ittf-red); font-family: 'JetBrains Mono', monospace;">:</span>CAST
+      <img class="logo-mark" src="logo.svg" alt="" aria-hidden="true" />
+      SCORE<span style="color: var(--ittf-red); font-family: 'JetBrains Mono', monospace;">–</span>CAST
     </div>
     <ul>
       <li><a href="#how">How it works</a></li>
@@ -948,7 +947,7 @@
     <div>
       <div class="logo" style="margin-bottom: 0.5rem;">
         <span class="logo-dot"></span>
-        SCORE<span style="color: var(--ittf-red); font-family: 'JetBrains Mono', monospace;">:</span>CAST
+        SCORE<span style="color: var(--ittf-red); font-family: 'JetBrains Mono', monospace;">–</span>CAST
       </div>
       <div>© 2026 SCORE:CAST. Not affiliated with ITTF.</div>
     </div>
