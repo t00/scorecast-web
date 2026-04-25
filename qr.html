@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SCORE–CAST · Help us launch</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #0b0b0c;
+    --muted: #5a5a60;
+    --accent: #d92b2b;
+    --paper: #ffffff;
+  }
+  html, body { margin: 0; padding: 0; background: #ddd; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif; color: var(--ink); }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--paper);
+    margin: 0 auto;
+    padding: 18mm 16mm 14mm;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5mm;
+  }
+  .brand .logo { width: 24mm; height: 24mm; flex: 0 0 auto; }
+  .wordmark {
+    font-weight: 900;
+    font-size: 18mm;
+    letter-spacing: -0.5mm;
+    line-height: 1;
+  }
+  .wordmark .dash { color: var(--accent); padding: 0 1mm; }
+  .tagline {
+    margin-top: 3mm;
+    font-size: 5mm;
+    color: var(--muted);
+    letter-spacing: 0.4mm;
+    text-transform: uppercase;
+  }
+
+  .headline {
+    margin-top: 14mm;
+    font-size: 13mm;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.3mm;
+    max-width: 170mm;
+  }
+  .body {
+    margin-top: 6mm;
+    font-size: 5.4mm;
+    line-height: 1.4;
+    color: #2b2b2e;
+    max-width: 160mm;
+  }
+  .body strong { color: var(--accent); }
+
+  .qr-wrap {
+    margin-top: 10mm;
+    padding: 5mm;
+    border: 0.6mm solid var(--ink);
+    border-radius: 3mm;
+    background: #fff;
+  }
+  .qr-wrap svg { display: block; width: 95mm; height: 95mm; }
+
+  .qr-caption {
+    margin-top: 4mm;
+    font-size: 5mm;
+    font-weight: 700;
+  }
+
+  .url-block {
+    margin-top: auto;
+    padding-top: 6mm;
+    width: 100%;
+  }
+  .url {
+    font-family: ui-monospace, "JetBrains Mono", Menlo, monospace;
+    font-size: 6mm;
+    font-weight: 700;
+    letter-spacing: 0.2mm;
+  }
+  .url .scheme { color: var(--muted); font-weight: 500; }
+  .footnote {
+    margin-top: 4mm;
+    font-size: 3.6mm;
+    color: var(--muted);
+    line-height: 1.4;
+    max-width: 170mm;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .rule {
+    width: 30mm;
+    height: 0.6mm;
+    background: var(--ink);
+    margin: 8mm auto 0;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; box-shadow: none; }
+  }
+  @media screen {
+    .page { box-shadow: 0 4px 24px rgba(0,0,0,.18); margin-top: 16px; margin-bottom: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+      <defs>
+        <linearGradient id="ringG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5ed0ff"/>
+          <stop offset="100%" stop-color="#00b4ff"/>
+        </linearGradient>
+        <radialGradient id="ballG" cx="0.35" cy="0.35" r="0.75">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="70%" stop-color="#e8f1ff"/>
+          <stop offset="100%" stop-color="#8ea7c9"/>
+        </radialGradient>
+      </defs>
+      <g transform="translate(256 256)" fill="none" stroke="url(#ringG)">
+        <circle r="200" stroke-width="10" opacity="0.55"/>
+        <circle r="150" stroke-width="12" opacity="0.8"/>
+        <circle r="100" stroke-width="14" opacity="1"/>
+      </g>
+      <circle cx="256" cy="256" r="44" fill="url(#ballG)" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+      <circle cx="242" cy="242" r="12" fill="#ffffff" opacity="0.9"/>
+    </svg>
+    <div class="wordmark">SCORE<span class="dash">–</span>CAST</div>
+  </div>
+  <div class="tagline">Table-tennis scoring · made for clubs</div>
+
+  <!--
+    Headline / body alternates — swap the active block to change wording.
+
+    OPTION 1 — Plain & direct
+      <div class="headline">Help us launch SCORE–CAST.</div>
+      <div class="body">Google requires <strong>14 days of testing</strong> before a new app can go public.
+      Scan, install, and open the app <strong>once a day for two weeks</strong>. That's it.</div>
+
+    OPTION 2 — Table-tennis flavoured
+      <div class="headline">You've got a serve.<br/>We need a rally.</div>
+      <div class="body">SCORE–CAST is one rule away from launch:
+      <strong>14 days of testers opening the app once a day</strong>. Scan to join.</div>
+
+    OPTION 3 — Honest plea
+      <div class="headline">Stuck behind Google's<br/>14-day wall.</div>
+      <div class="body">Scan, install, and open SCORE–CAST <strong>once a day for two weeks</strong>.
+      You'll have helped a small dev ship a real app.</div>
+
+    OPTION 5 — Tournament-tailored
+      <div class="headline">Like SCORE–CAST?<br/>Help us ship it.</div>
+      <div class="body">Google requires <strong>14 days of active testers</strong> before a new app can go public.
+      Scan, install, open it once a day during the tournament — you'll have done your part by the final.</div>
+  -->
+
+  <!-- ACTIVE: OPTION 4 — Low-commitment -->
+  <div class="headline">Be a beta tester<br/>for 5 seconds a day.</div>
+  <div class="body">
+    Google won't publish SCORE–CAST until testers run it
+    <strong>once a day for 14 days</strong>.<br/>
+    Scan, install, tap the icon. Done.
+  </div>
+
+  <div class="qr-wrap">
+    <!-- QR encodes: https://play.google.com/apps/testing/app.scorecast -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges">
+      <path fill="#ffffff" d="M0 0h35v35H0z"/>
+      <path stroke="#000000" d="M1 1.5h7m1 0h2m1 0h1m1 0h2m1 0h6m1 0h1m2 0h7M1 2.5h1m5 0h1m1 0h3m1 0h2m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h1m4 0h3m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h5m1 0h1m1 0h1m3 0h1m1 0h2m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m2 0h2m3 0h1m5 0h1m3 0h1m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m2 0h1m2 0h3m2 0h5m2 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m1 0h2m2 0h1m2 0h2m1 0h1m1 0h1m1 0h1M1 9.5h1m1 0h2m1 0h3m1 0h2m3 0h1m1 0h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h2M3 10.5h3m5 0h1m7 0h4m1 0h2m1 0h2m1 0h2m1 0h1M1 11.5h3m3 0h1m1 0h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h3m1 0h4m1 0h2M1 12.5h1m1 0h1m1 0h1m2 0h3m2 0h5m1 0h1m1 0h1m4 0h1m1 0h1m1 0h1m1 0h1M3 13.5h5m3 0h3m2 0h1m2 0h2m2 0h4m2 0h2m1 0h1M1 14.5h4m1 0h1m1 0h1m4 0h1m3 0h1m1 0h1m2 0h1m2 0h2m1 0h1m1 0h3M1 15.5h2m1 0h4m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m2 0h1m1 0h4M3 16.5h1m2 0h1m2 0h3m1 0h1m1 0h1m1 0h1m2 0h9m1 0h2M1 17.5h1m1 0h1m3 0h1m1 0h5m2 0h2m2 0h8m1 0h3M2 18.5h5m1 0h2m1 0h6m1 0h1m4 0h3m1 0h1m1 0h2m2 0h1M4 19.5h1m2 0h2m1 0h3m2 0h2m1 0h1m2 0h1m6 0h2m1 0h2M1 20.5h1m1 0h2m4 0h2m1 0h2m9 0h2m2 0h1m1 0h1m2 0h1M2 21.5h1m1 0h5m3 0h1m6 0h2m1 0h1m3 0h1m3 0h3M1 22.5h1m3 0h1m5 0h3m1 0h2m1 0h2m4 0h1m2 0h1m2 0h1m2 0h1M3 23.5h2m2 0h1m2 0h2m5 0h1m1 0h1m1 0h5m1 0h7M2 24.5h5m3 0h2m3 0h1m1 0h1m1 0h3m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2M1 25.5h1m1 0h2m2 0h1m2 0h5m1 0h3m4 0h1m1 0h5M9 26.5h2m1 0h1m1 0h5m1 0h1m3 0h2m3 0h2m1 0h1M1 27.5h7m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m2 0h3m1 0h1m1 0h1M1 28.5h1m5 0h1m1 0h4m3 0h1m4 0h5m3 0h4M1 29.5h1m1 0h3m1 0h1m2 0h2m6 0h1m1 0h1m1 0h8m1 0h3M1 30.5h1m1 0h3m1 0h1m1 0h3m3 0h1m3 0h1m1 0h1m6 0h1m1 0h1m2 0h1M1 31.5h1m1 0h3m1 0h1m1 0h2m1 0h4m3 0h1m1 0h1m1 0h2m2 0h2m1 0h1M1 32.5h1m5 0h1m2 0h2m1 0h9m1 0h1m1 0h2m1 0h3m2 0h1M1 33.5h7m1 0h1m4 0h1m1 0h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1"/>
+    </svg>
+  </div>
+
+  <div class="qr-caption">Scan to join the test</div>
+
+  <div class="rule"></div>
+
+  <div class="url-block">
+    <div class="url"><span class="scheme">https://</span>score-cast.app</div>
+    <div class="footnote">
+      Free · Works offline · No account required ·
+      Open the app once a day to keep our 14-day testing streak alive.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
